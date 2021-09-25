@@ -29,7 +29,7 @@ def plotGLCM(img, glcm_mean, glcm_std, glcm_contrast, glcm_dissimilarity, glcm_h
         plt.title(titles[i], fontsize=fs)
 
     plt.tight_layout(pad=0.5)
-   #plt.savefig('numpy_output.png')
+    plt.savefig('output.png')
     plt.show()
 
 def calcGLCM(img):
@@ -97,12 +97,13 @@ if __name__ == '__main__':
     #img           = imageHandler.Open(fileNameImage,colorType="GRAYSCALE")
 
     capture = cv2.VideoCapture(0)
-    for i in range(10):
+    for i in range(100):
         ret, frame = capture.read()
+        print(ret)
         if ret==True:
             img_gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
     
     img = img_gray
-    displayImage(img)
+    #displayImage(img)
     glcm_mean, glcm_std, glcm_contrast, glcm_dissimilarity, glcm_homogeneity, glcm_asm, glcm_energy, glcm_max, glcm_entropy = calcGLCM(img)
     plotGLCM (img, glcm_mean, glcm_std, glcm_contrast, glcm_dissimilarity, glcm_homogeneity, glcm_asm, glcm_energy, glcm_max, glcm_entropy)
